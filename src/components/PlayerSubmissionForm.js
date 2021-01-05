@@ -11,6 +11,7 @@ import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
+  // const [player, setPlayer] = useState(1)
   const [boxFields, setBoxFields] = useState({
     boxOne: '',
     boxTwo: '',
@@ -44,6 +45,7 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     event.preventDefault();
     sendSubmission(boxFields);
 
+    // setPlayer(player + 1)
     setBoxFields({
       boxOne: '',
       boxTwo: '',
@@ -52,6 +54,7 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
       boxFive: '',
       boxSix: ''
     })
+
 
   }
 

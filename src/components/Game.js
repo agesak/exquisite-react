@@ -11,9 +11,8 @@ import RecentSubmission from './RecentSubmission';
 
 const Game = () => {
 
+
   const [player, setPlayer] = useState(1)
-
-
   const exampleFormat = FIELDS.map((field) => {
     if (field.key) {
       return field.placeholder;
@@ -23,7 +22,9 @@ const Game = () => {
   }).join(' ');
 
   const newSubmission = (submission) => {
-
+    console.log(submission)
+    setPlayer(player + 1)
+    
 
 
   }

@@ -99,7 +99,7 @@ describe('Game', () => {
     });
 
 
-    describe.skip('Wave 2:  Showing lines of poetry', () => {
+    describe('Wave 2:  Showing lines of poetry', () => {
 
       test('you can enter a line of the poem', () => {
         const line = ['big', 'cat', 'abruptly', 'eats', 'tasty', 'dogfood'];

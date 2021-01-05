@@ -3,22 +3,15 @@ import PropTypes from 'prop-types';
 
 import './PlayerSubmissionForm.css';
 
-{/* <PlayerSubmissionForm
-  index={1}
-  sendSubmission={() => { }}
-  fields={FIELDS}
-/> */}
-
 const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
-  // const [player, setPlayer] = useState(1)
   const [boxFields, setBoxFields] = useState({
-    boxOne: '',
-    boxTwo: '',
-    boxThree: '',
-    boxFour: '',
-    boxFive: '',
-    boxSix: ''
+    adj1: '',
+    noun1: '',
+    adv: '',
+    verb: '',
+    adj2: '',
+    noun2: ''
   })
 
   const onBoxUpdate = (event) => {
@@ -30,32 +23,31 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     setBoxFields(newBoxFields)
   }
 
-  // const [firstField, updateField] = useState('')
-
-  // const onFieldUpdate = (event) => {
-  //   updateField(event.target.value)
-  //   console.log(firstField)
-  // }
-
-  // onPlayerType = (event) => {
-
-  // }
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     sendSubmission(boxFields);
 
-    // setPlayer(player + 1)
     setBoxFields({
-      boxOne: '',
-      boxTwo: '',
-      boxThree: '',
-      boxFour: '',
-      boxFive: '',
-      boxSix: ''
+      adj1: '',
+      noun1: '',
+      adv: '',
+      verb: '',
+      adj2: '',
+      noun2: ''
     })
+  }
 
+  const generateForm = () => {
 
+    return (fields.map((field, i) => {
+      if (typeof field === 'string' || field instanceof String) {
+        return <span key={i}>{field}</span>
+      } else {
+        return <input key={i} name={field.key} placeholder={field.placeholder} type="text" value={boxFields[field.key]} onChange={onBoxUpdate} />
+      }
+
+    })
+    )
   }
 
   return (
@@ -65,14 +57,18 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
       <form className="PlayerSubmissionForm__form" onSubmit={onFormSubmit}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
+          {generateForm()}
+
+
+
 
           
-            The <input name="boxOne" placeholder={fields[1].placeholder} type="text" value={boxFields.boxOne} onChange={onBoxUpdate} />
-            <input name="boxTwo" placeholder={fields[2].placeholder} type="text" value={boxFields.boxTwo} onChange={onBoxUpdate} />
-            <input name="boxThree" placeholder={fields[3].placeholder}  type="text" value={boxFields.boxThree} onChange={onBoxUpdate} />
-            <input name="boxFour" placeholder={fields[4].placeholder}  type="text" value={boxFields.boxFour} onChange={onBoxUpdate} />
-            the <input name="boxFive" placeholder={fields[6].placeholder}  type="text" value={boxFields.boxFive} onChange={onBoxUpdate} />
-            <input name="boxSix" placeholder={fields[7].placeholder}  type="text" value={boxFields.boxSix} onChange={onBoxUpdate} />
+            {/* The <input name="adj1" placeholder={fields[1].placeholder} type="text" value={boxFields.adj1} onChange={onBoxUpdate} />
+            <input name="noun1" placeholder={fields[2].placeholder} type="text" value={boxFields.noun1} onChange={onBoxUpdate} />
+            <input name="adv" placeholder={fields[3].placeholder}  type="text" value={boxFields.adv} onChange={onBoxUpdate} />
+            <input name="verb" placeholder={fields[4].placeholder}  type="text" value={boxFields.verb} onChange={onBoxUpdate} />
+            the <input name="adj2" placeholder={fields[6].placeholder}  type="text" value={boxFields.adj2} onChange={onBoxUpdate} />
+            <input name="noun2" placeholder={fields[7].placeholder}  type="text" value={boxFields.noun2} onChange={onBoxUpdate} /> */}
           
 
 

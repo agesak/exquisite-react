@@ -4,15 +4,13 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
-// this should happen when you submit line
-// const updatePlayer = () => {
-//   setPlayer(player+1)
-// }
-
 const Game = () => {
 
 
   const [player, setPlayer] = useState(1)
+  const [isSubmitted, setSubmissionStatus] = useState(false)
+  const [submissions, setSubmission] = useState([])
+
   const exampleFormat = FIELDS.map((field) => {
     if (field.key) {
       return field.placeholder;
@@ -21,12 +19,23 @@ const Game = () => {
     }
   }).join(' ');
 
-  const newSubmission = (submission) => {
-    console.log(submission)
+  const finalPoem = () => {
+    setSubmissionStatus(!isSubmitted)
+  }
+
+  const newSubmission = (poem) => {
     setPlayer(player + 1)
     
+    const newPoem = [...submissions]
+    newPoem.push(poem)
+    setSubmission(newPoem)
+    
+  }
 
-
+  const generatePoem = () => {
+    return submissions.map((submissions) => {
+      return Object.values(submissions).join(' ')
+    })
   }
   
 
@@ -46,7 +55,7 @@ const Game = () => {
 
       <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />
 
-      <FinalPoem />
+      <FinalPoem isSubmitted={isSubmitted} submissions={generatePoem(submissions)} revealPoem={finalPoem} />
 
     </div>
   );

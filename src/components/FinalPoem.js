@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
-
-  return (
+const FinalPoem = ({isSubmitted, submissions, revealPoem}) => {
+  if (isSubmitted){
+    return(
     <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+    <section className="FinalPoem__poem">
+      <h3>Final Poem</h3>
+      <span>{submissions}</span>
 
-      </section>
-
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+    </section>
+    </div>)
+  }
+  return (
+    <div className="FinalPoem__reveal-btn-container">
+        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={revealPoem}/>
+        
       </div>
-    </div>
-  );
+  )
 }
 
 FinalPoem.propTypes = {

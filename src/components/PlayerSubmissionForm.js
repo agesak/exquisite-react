@@ -3,21 +3,75 @@ import PropTypes from 'prop-types';
 
 import './PlayerSubmissionForm.css';
 
-const PlayerSubmissionForm = () => {
+{/* <PlayerSubmissionForm
+  index={1}
+  sendSubmission={() => { }}
+  fields={FIELDS}
+/> */}
+
+const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
+
+  const [boxFields, setBoxFields] = useState({
+    boxOne: '',
+    boxTwo: '',
+    boxThree: '',
+    boxFour: '',
+    boxFive: '',
+    boxSix: ''
+  })
+
+  const onBoxUpdate = (event) => {
+    const newBoxFields = {
+      ...boxFields
+    }
+
+    newBoxFields[event.target.name] = event.target.value
+    setBoxFields(newBoxFields)
+  }
+
+  // const [firstField, updateField] = useState('')
+
+  // const onFieldUpdate = (event) => {
+  //   updateField(event.target.value)
+  //   console.log(firstField)
+  // }
+
+  // onPlayerType = (event) => {
+
+  // }
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    sendSubmission(boxFields);
+
+    setBoxFields({
+      boxOne: '',
+      boxTwo: '',
+      boxThree: '',
+      boxFour: '',
+      boxFive: '',
+      boxSix: ''
+    })
+
+  }
+
   return (
     <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{  }</h3>
+      <h3>Player Submission Form for Player #{index}</h3>
 
-      <form className="PlayerSubmissionForm__form" >
+      <form className="PlayerSubmissionForm__form" onSubmit={onFormSubmit}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
 
-          {
-            // Put your form inputs here... We've put in one below as an example
-          }
-          <input
-            placeholder="hm..."
-            type="text" />
+          
+            The <input name="boxOne" placeholder={fields[1].placeholder} type="text" value={boxFields.boxOne} onChange={onBoxUpdate} />
+            <input name="boxTwo" placeholder={fields[2].placeholder} type="text" value={boxFields.boxTwo} onChange={onBoxUpdate} />
+            <input name="boxThree" placeholder={fields[3].placeholder}  type="text" value={boxFields.boxThree} onChange={onBoxUpdate} />
+            <input name="boxFour" placeholder={fields[4].placeholder}  type="text" value={boxFields.boxFour} onChange={onBoxUpdate} />
+            the <input name="boxFive" placeholder={fields[6].placeholder}  type="text" value={boxFields.boxFive} onChange={onBoxUpdate} />
+            <input name="boxSix" placeholder={fields[7].placeholder}  type="text" value={boxFields.boxSix} onChange={onBoxUpdate} />
+          
+
 
         </div>
 

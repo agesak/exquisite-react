@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Game from './components/Game.js';
 
 const App = () => {
+
   return (
     <div className="App">
       <header className="App__header">

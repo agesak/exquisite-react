@@ -4,8 +4,8 @@ import './FinalPoem.css';
 
 const FinalPoem = ({isSubmitted, submissions, revealPoem}) => {
 
-  const formattedPoem = submissions.map((submission) => {
-    return <p>{submission}</p>
+  const formattedPoem = submissions.map((submission, i) => {
+    return <p key={i}>{submission}</p>
   })
 
   if (isSubmitted){

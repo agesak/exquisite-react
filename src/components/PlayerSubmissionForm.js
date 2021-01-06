@@ -18,7 +18,6 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     const newBoxFields = {
       ...boxFields
     }
-    // console.log(event.target.value)
 
     newBoxFields[event.target.name] = event.target.value
     setBoxFields(newBoxFields)
@@ -26,15 +25,15 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-
+    const submittedFields = {...boxFields};
     const poem = fields.map(field => {
-      const submittedFields = {...boxFields};
       if (field.key) {
         return submittedFields[field.key]
       } else {
         return field
       }
     }).join(' ');
+    console.log(poem)
   
     sendSubmission(poem);
 
@@ -46,10 +45,6 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
       adj2: '',
       noun2: ''
     })
-  }
-
-  const inputValid = () => {
-    return 
   }
 
   const generateForm = () => {

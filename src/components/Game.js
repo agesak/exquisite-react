@@ -32,12 +32,6 @@ const Game = () => {
     
   }
 
-  let submissionInfo = ''
-  if (!isSubmitted) {
-    submissionInfo = [<RecentSubmission submission={submissions[submissions.length - 1]} />, <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />]
-  }
-
-
   return (
     <div className="Game">
       <h2>Game</h2>
@@ -50,7 +44,8 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      {submissionInfo}
+      { isSubmitted ? '': <RecentSubmission submission={submissions[submissions.length - 1]} /> }
+      { isSubmitted ? '': <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} /> }
 
       <FinalPoem isSubmitted={isSubmitted} submissions={submissions} revealPoem={finalPoem} />
 

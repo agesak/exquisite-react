@@ -25,7 +25,17 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    sendSubmission(boxFields);
+
+    const poem = fields.map(field => {
+      const submittedFields = {...boxFields};
+      if (field.key) {
+        return submittedFields[field.key]
+      } else {
+        return field
+      }
+    }).join(' ');
+  
+    sendSubmission(poem);
 
     setBoxFields({
       adj1: '',
@@ -45,7 +55,6 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
       } else {
         return <input key={i} name={field.key} placeholder={field.placeholder} type="text" value={boxFields[field.key]} onChange={onBoxUpdate} />
       }
-
     })
     )
   }
@@ -58,20 +67,6 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
         <div className="PlayerSubmissionForm__poem-inputs">
           {generateForm()}
-
-
-
-
-          
-            {/* The <input name="adj1" placeholder={fields[1].placeholder} type="text" value={boxFields.adj1} onChange={onBoxUpdate} />
-            <input name="noun1" placeholder={fields[2].placeholder} type="text" value={boxFields.noun1} onChange={onBoxUpdate} />
-            <input name="adv" placeholder={fields[3].placeholder}  type="text" value={boxFields.adv} onChange={onBoxUpdate} />
-            <input name="verb" placeholder={fields[4].placeholder}  type="text" value={boxFields.verb} onChange={onBoxUpdate} />
-            the <input name="adj2" placeholder={fields[6].placeholder}  type="text" value={boxFields.adj2} onChange={onBoxUpdate} />
-            <input name="noun2" placeholder={fields[7].placeholder}  type="text" value={boxFields.noun2} onChange={onBoxUpdate} /> */}
-          
-
-
         </div>
 
         <div className="PlayerSubmissionForm__submit">

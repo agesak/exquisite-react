@@ -32,12 +32,6 @@ const Game = () => {
     
   }
 
-  const generatePoem = () => {
-    return submissions.map((submissions) => {
-      return Object.values(submissions).join(' ')
-    })
-  }
-  
 
   return (
     <div className="Game">
@@ -55,7 +49,7 @@ const Game = () => {
 
       <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />
 
-      <FinalPoem isSubmitted={isSubmitted} submissions={generatePoem(submissions)} revealPoem={finalPoem} />
+      <FinalPoem isSubmitted={isSubmitted} submissions={submissions} revealPoem={finalPoem} />
 
     </div>
   );

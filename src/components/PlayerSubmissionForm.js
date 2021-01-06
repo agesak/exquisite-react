@@ -5,22 +5,21 @@ import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
 
-  const [boxFields, setBoxFields] = useState({
-    adj1: '',
-    noun1: '',
-    adv: '',
-    verb: '',
-    adj2: '',
-    noun2: ''
-  })
+  const emptyBoxes = {};
+  for (let i = 0; i < fields.length; i++) {
+    if (fields[i].key) {
+      emptyBoxes[fields[i].key] = ''
+    }
+  }
+  const [boxFields, setBoxFields] = useState(emptyBoxes);
 
   const onBoxUpdate = (event) => {
     const newBoxFields = {
       ...boxFields
     }
 
-    newBoxFields[event.target.name] = event.target.value
-    setBoxFields(newBoxFields)
+    newBoxFields[event.target.name] = event.target.value;
+    setBoxFields(newBoxFields);
   }
 
   const onFormSubmit = (event) => {
@@ -28,27 +27,17 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     const submittedFields = {...boxFields};
     const poem = fields.map(field => {
       if (field.key) {
-        return submittedFields[field.key]
+        return submittedFields[field.key];
       } else {
-        return field
+        return field;
       }
     }).join(' ');
-    console.log(poem)
   
     sendSubmission(poem);
-
-    setBoxFields({
-      adj1: '',
-      noun1: '',
-      adv: '',
-      verb: '',
-      adj2: '',
-      noun2: ''
-    })
+    setBoxFields(emptyBoxes);
   }
 
   const generateForm = () => {
-
     return (fields.map((field, i) => {
       if (typeof field === 'string' || field instanceof String) {
         return <span key={i}>{field}</span>
@@ -62,17 +51,13 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
   return (
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player #{index}</h3>
-
       <form className="PlayerSubmissionForm__form" onSubmit={onFormSubmit}>
-
         <div className="PlayerSubmissionForm__poem-inputs">
           {generateForm()}
         </div>
-
         <div className="PlayerSubmissionForm__submit">
           <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
         </div>
-
       </form>
     </div>
   );

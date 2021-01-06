@@ -6,10 +6,9 @@ import RecentSubmission from './RecentSubmission';
 
 const Game = () => {
 
-
-  const [player, setPlayer] = useState(1)
-  const [isSubmitted, setSubmissionStatus] = useState(false)
-  const [submissions, setSubmission] = useState([])
+  const [player, setPlayer] = useState(1);
+  const [isSubmitted, setSubmissionStatus] = useState(false);
+  const [submissions, setSubmission] = useState([]);
 
   const exampleFormat = FIELDS.map((field) => {
     if (field.key) {
@@ -20,16 +19,15 @@ const Game = () => {
   }).join(' ');
 
   const finalPoem = () => {
-    setSubmissionStatus(!isSubmitted)
+    setSubmissionStatus(!isSubmitted);
   }
 
   const newSubmission = (poem) => {
-    setPlayer(player + 1)
-    
-    const newSubmissions = [...submissions]
-    newSubmissions.push(poem)
-    setSubmission(newSubmissions)
-    
+    setPlayer(player + 1);
+  
+    const newSubmissions = [...submissions];
+    newSubmissions.push(poem);
+    setSubmission(newSubmissions);
   }
 
   return (

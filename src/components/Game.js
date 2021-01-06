@@ -29,8 +29,12 @@ const Game = () => {
     const newSubmissions = [...submissions]
     newSubmissions.push(poem)
     setSubmission(newSubmissions)
-    // console.log(submissions)
     
+  }
+
+  let submissionInfo = ''
+  if (!isSubmitted) {
+    submissionInfo = [<RecentSubmission submission={submissions[submissions.length - 1]} />, <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />]
   }
 
 
@@ -46,9 +50,7 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission submission={submissions[submissions.length - 1]} />
-
-      <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />
+      {submissionInfo}
 
       <FinalPoem isSubmitted={isSubmitted} submissions={submissions} revealPoem={finalPoem} />
 

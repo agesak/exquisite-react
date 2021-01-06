@@ -18,6 +18,7 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     const newBoxFields = {
       ...boxFields
     }
+    // console.log(event.target.value)
 
     newBoxFields[event.target.name] = event.target.value
     setBoxFields(newBoxFields)
@@ -47,13 +48,17 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
     })
   }
 
+  const inputValid = () => {
+    return 
+  }
+
   const generateForm = () => {
 
     return (fields.map((field, i) => {
       if (typeof field === 'string' || field instanceof String) {
         return <span key={i}>{field}</span>
       } else {
-        return <input key={i} name={field.key} placeholder={field.placeholder} type="text" value={boxFields[field.key]} onChange={onBoxUpdate} />
+        return <input key={i} name={field.key} placeholder={field.placeholder} type="text" value={boxFields[field.key]} onChange={onBoxUpdate} className={boxFields[field.key]==='' ? 'PlayerSubmissionForm__input--invalid' : 'PlayerSubmissionForm__input--valid'} />
       }
     })
     )
@@ -72,6 +77,7 @@ const PlayerSubmissionForm = ({fields, index, sendSubmission}) => {
         <div className="PlayerSubmissionForm__submit">
           <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
         </div>
+
       </form>
     </div>
   );

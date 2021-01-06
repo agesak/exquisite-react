@@ -149,7 +149,7 @@ describe('Game', () => {
       });
     });
 
-    describe.skip('Wave 3, these test submitting a finished poem', () => {
+    describe('Wave 3, these test submitting a finished poem', () => {
       test('you can click on the "We are finished: Reveal the Poem" button', () => {
         // Arrange
         // Submit the poem

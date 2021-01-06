@@ -26,9 +26,10 @@ const Game = () => {
   const newSubmission = (poem) => {
     setPlayer(player + 1)
     
-    const newPoem = [...submissions]
-    newPoem.push(poem)
-    setSubmission(newPoem)
+    const newSubmissions = [...submissions]
+    newSubmissions.push(poem)
+    setSubmission(newSubmissions)
+    // console.log(submissions)
     
   }
 
@@ -45,7 +46,7 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission />
+      <RecentSubmission submission={submissions[submissions.length - 1]} />
 
       <PlayerSubmissionForm fields={FIELDS} index={player} sendSubmission={newSubmission} />
 

@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 const FinalPoem = ({isSubmitted, submissions, revealPoem}) => {
+
+  const formattedPoem = submissions.map((submission) => {
+    return <p>{submission}</p>
+  })
+
   if (isSubmitted){
     return(
     <div className="FinalPoem">
     <section className="FinalPoem__poem">
       <h3>Final Poem</h3>
-      <span>{submissions}</span>
+      {formattedPoem}
     </section>
     </div>)
   }
